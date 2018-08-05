@@ -1,3 +1,4 @@
+<?php
 function dbx($mode = null, $id = null, $table = null, $row = null, $col = null, $data = null, $vuln = "all") {
 	global $conn; //connection to DB
 	switch ($mode) {
@@ -117,3 +118,5 @@ function dbx($mode = null, $id = null, $table = null, $row = null, $col = null, 
 			break;
 	}
 }
+
+?>
