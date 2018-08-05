@@ -3,7 +3,7 @@ function dbx($mode = null, $id = null, $table = null, $row = null, $col = null, 
 	global $conn; //connection to DB
 	switch ($mode) {
 		case 'c':
-			if ("$vuln"=="") {
+			if (empty($vuln)) {
 				$f = null;
 				$e = null;
 				foreach ($data as $field => $entry) {
@@ -61,6 +61,7 @@ function dbx($mode = null, $id = null, $table = null, $row = null, $col = null, 
 				$result = mysqli_query($conn, "SELECT * FROM `$table`") or die('SQL error: '.mysqli_error($conn));
 				return $result;
 			} else {
+				if (!is_numeric($id)) {die('Syntax error: "id" must be a numeric value');}
 				$a = mysqli_query($conn, "SELECT * FROM `$table` WHERE id=$id") or die('SQL error: '.mysqli_error($conn));
 				$a = mysqli_fetch_assoc($a);
 				return $a["$row"];
@@ -68,7 +69,7 @@ function dbx($mode = null, $id = null, $table = null, $row = null, $col = null, 
 			break;
 
 		case 'u':
-			if ("$vuln"=="") {
+			if (empty($vuln)) {
 				$x = null;
 				foreach ($data as $field => $entry) {
 					$x .= "`$field` = '$entry', ";
@@ -113,6 +114,7 @@ function dbx($mode = null, $id = null, $table = null, $row = null, $col = null, 
 			if ("$id"=="all") {
 				return mysqli_query($conn, "TRUNCATE `$table`") or die('SQL error: '.mysqli_error($conn));
 			} else {
+				if (!is_numeric($id)) {die('Syntax error: "id" must be a numeric value');}
 				return mysqli_query($conn, "DELETE FROM `$table` WHERE id=$id") or die('SQL error: '.mysqli_error($conn));
 			}
 			break;
