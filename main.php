@@ -1,7 +1,7 @@
 <?php
 // require both the database and functions files; The DB file must come before the functions file
-require 'database.inc.php';
-require 'functions.inc.php';
+require 'includes/database.inc.php';
+require 'includes/functions.inc.php';
 
 /*
 CHEAT SHEET
